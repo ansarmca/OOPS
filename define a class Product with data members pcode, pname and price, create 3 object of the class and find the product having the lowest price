@@ -1,5 +1,5 @@
 Product.java: 
-
+------------
 package Module1;
 
 public class Product {
@@ -38,7 +38,7 @@ public class Product {
 }
 
 cars.java: 
-
+----------
 package Module1;
 
 public class cars {
@@ -69,7 +69,7 @@ public class cars {
 
 
 output:
-
+-------
 Displaying p1: 
 pcode: car123
 pname: Benz

@@ -2,30 +2,54 @@ ComplexNumbers.java:
 -------------------
 package Module1;
 
+import java.util.Scanner;
+
 public class ComplexNumbers {
-	double real, img;
-	
-	ComplexNumbers(double r, double i){
-		real=r; 
-		img=i;
-	}
-	public static ComplexNumbers sum(ComplexNumbers c1, ComplexNumbers c2) {
-		ComplexNumbers temp = new ComplexNumbers(0,0);
-		temp.real = c1.real + c2.real;
-		temp.img = c1.img + c2.img;
-		return temp;
-	}
-	public static void main(String[] args) {
-		ComplexNumbers c1 = new ComplexNumbers(5.5,4);
-		ComplexNumbers c2 = new ComplexNumbers(1.2,3.5);
-		ComplexNumbers temp = sum(c1,c2);
-		System.out.println("sum is " + temp.real + " + " + temp.img + "i");
+    double real, img;
 
-	}
+    ComplexNumbers(double r, double i) {
+        real = r;
+        img = i;
+    }
 
+    public static ComplexNumbers sum(ComplexNumbers c1, ComplexNumbers c2) {
+        return new ComplexNumbers(c1.real + c2.real, c1.img + c2.img);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the real part of first complex number:");
+        double real1 = scanner.nextDouble();
+        System.out.println("Enter the imaginary part of first complex number:");
+        double img1 = scanner.nextDouble();
+        
+        System.out.println("Enter the real part of second complex number:");
+        double real2 = scanner.nextDouble();
+        System.out.println("Enter the imaginary part of second complex number:");
+        double img2 = scanner.nextDouble();
+
+        ComplexNumbers c1 = new ComplexNumbers(real1, img1);
+        ComplexNumbers c2 = new ComplexNumbers(real2, img2);
+
+        ComplexNumbers temp = sum(c1, c2);
+
+        System.out.println("Sum is " + temp.real + " + " + temp.img + "i");
+
+        scanner.close();
+    }
 }
 
 
 output:
 ------
-sum is 6.7 + 7.5i
+Enter the real part of first complex number:
+6.7
+Enter the imaginary part of first complex number:
+5.2
+Enter the real part of second complex number:
+1.2
+Enter the imaginary part of second complex number:
+3.5
+Sum is 7.9 + 8.7i
+

@@ -1,8 +1,8 @@
-package module_1;
+package Module1;
 
 import java.util.Scanner;
 
-public class MatrixCalculation {
+public class MatrixCalculations {
 
     public static void main(String[] args) {
         int p, q, m, n;
@@ -104,13 +104,15 @@ public class MatrixCalculation {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (b[i][j] == 0) {
-                    result[i][j] = Double.NaN; 
+                    result[i][j] = Double.NaN;  // Handle division by zero
+                } else {
                     result[i][j] = (double) a[i][j] / b[i][j];
                 }
             }
         }
         return result;
     }
+
 
 
     public static int[][] transposeMatrix(int[][] matrix, int rows, int cols) {

@@ -1,6 +1,5 @@
 package module_2;
 
-import module_1.Employee;
 import java.util.Scanner;
 
 public class EmpArrObjects {

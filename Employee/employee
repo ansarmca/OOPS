@@ -1,0 +1,20 @@
+package module_2;
+
+public class Employee {
+	
+	int eno,esalary;
+	String ename;
+	public Employee() {
+		// TODO Auto-generated constructor stub
+	}
+	public Employee(int no, int sal, String name) {
+		eno=no;
+		esalary= sal;
+		ename=name;
+	}
+	public void showData() {
+		System.out.println("empid : "+ eno + " " + "name : "+ ename+ " " + " salary : "+ esalary);
+		System.out.println();
+	}
+
+}

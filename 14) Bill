@@ -1,3 +1,5 @@
+package module_3;
+
 import java.util.*;
 
 interface BillGen {
@@ -59,18 +61,18 @@ public class Bill {
             System.out.println(date);
 
             System.out.println("---------------------------------------------------------------");
-            System.out.printf("%5s %20s %25s %10s %10s %10s", "Prod_Id", "Name", "Quantity", "Unit_Price", "Total");
+            System.out.printf("%5s %20s %15s %15s %10s\n", "Prod_Id", "Name", "Quantity", "Unit_Price", "Total");
             System.out.println();
             System.out.println("---------------------------------------------------------------");
 
             for (int j = 0; j < order[i].length; j++) {
-                System.out.printf("%5d %20s %25d %10d %10d\n",
-                    order[i][j].prod_id,
-                    order[i][j].name,
-                    order[i][j].quantity,
-                    order[i][j].unit_price,
-                    order[i][j].total
-                );
+            	System.out.printf("%5d %20s %15d %15d %10d\n",
+            		    order[i][j].prod_id,
+            		    order[i][j].name,
+            		    order[i][j].quantity,
+            		    order[i][j].unit_price,
+            		    order[i][j].total
+            		);
             }
 
             System.out.println();
@@ -82,3 +84,59 @@ public class Bill {
         }
     }
 }
+
+
+output:
+-------
+
+Enter no. of orders: 
+2
+Enter no. of Products: 
+2
+Enter Product 0 Name: 
+soap
+Enter Product ID: 
+101
+Enter Product Quantity: 
+4
+Enter Product Unit_Price: 
+25
+Enter Product 1 Name: 
+brush
+Enter Product ID: 
+235
+Enter Product Quantity: 
+5
+Enter Product Unit_Price: 
+75
+Enter no. of Products: 
+1
+Enter Product 0 Name: 
+wallet
+Enter Product ID: 
+433
+Enter Product Quantity: 
+2
+Enter Product Unit_Price: 
+700
+Order No: 1
+Sun Apr 13 12:42:31 IST 2025
+---------------------------------------------------------------
+Prod_Id                 Name        Quantity      Unit_Price      Total
+
+---------------------------------------------------------------
+  101                 soap               4              25        100
+  235                brush               5              75        375
+
+ Net Amount : 475
+---------------------------------------------------------------
+Order No: 2
+Sun Apr 13 12:42:31 IST 2025
+---------------------------------------------------------------
+Prod_Id                 Name        Quantity      Unit_Price      Total
+
+---------------------------------------------------------------
+  433               wallet               2             700       1400
+
+ Net Amount : 1400
+---------------------------------------------------------------

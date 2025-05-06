@@ -1,5 +1,3 @@
-package module_3;
-
 import java.util.Scanner;
 
 class Publisher {
@@ -46,32 +44,52 @@ public class InheritanceBook {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // Input for Literature book
-        System.out.println("Enter details for Literature Book:");
-        System.out.print("Book Name: ");
-        String litName = scanner.nextLine();
-        System.out.print("Publisher: ");
-        String litPublisher = scanner.nextLine();
+        // Input for number of Literature books
+        System.out.print("Enter number of Literature books: ");
+        int numLit = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
         
-        Publisher lp = new Publisher(litPublisher);
-        Literature l = new Literature(litName, lp);
+        Literature[] litBooks = new Literature[numLit];
+        for (int i = 0; i < numLit; i++) {
+            System.out.println("\nEnter details for Literature Book #" + (i+1) + ":");
+            System.out.print("Book Name: ");
+            String litName = scanner.nextLine();
+            System.out.print("Publisher: ");
+            String litPublisher = scanner.nextLine();
+            
+            Publisher lp = new Publisher(litPublisher);
+            litBooks[i] = new Literature(litName, lp);
+        }
         
-        // Input for Fiction book
-        System.out.println("\nEnter details for Fiction Book:");
-        System.out.print("Book Name: ");
-        String ficName = scanner.nextLine();
-        System.out.print("Publisher: ");
-        String ficPublisher = scanner.nextLine();
+        // Input for number of Fiction books
+        System.out.print("\nEnter number of Fiction books: ");
+        int numFic = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
         
-        Publisher fp = new Publisher(ficPublisher);
-        Fiction f = new Fiction(ficName, fp);
+        Fiction[] ficBooks = new Fiction[numFic];
+        for (int i = 0; i < numFic; i++) {
+            System.out.println("\nEnter details for Fiction Book #" + (i+1) + ":");
+            System.out.print("Book Name: ");
+            String ficName = scanner.nextLine();
+            System.out.print("Publisher: ");
+            String ficPublisher = scanner.nextLine();
+            
+            Publisher fp = new Publisher(ficPublisher);
+            ficBooks[i] = new Fiction(ficName, fp);
+        }
         
-        // Display the books
-        System.out.println("\nBook Details:");
-        System.out.println("------------");
-        l.display();
-        System.out.println();
-        f.display();
+        // Display all books
+        System.out.println("\n--- Literature Books ---");
+        for (Literature book : litBooks) {
+            book.display();
+            System.out.println();
+        }
+        
+        System.out.println("\n--- Fiction Books ---");
+        for (Fiction book : ficBooks) {
+            book.display();
+            System.out.println();
+        }
         
         scanner.close();
     }

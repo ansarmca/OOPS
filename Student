@@ -12,16 +12,13 @@ ____
 import java.util.Scanner;
 
 class Student {
-    // Instance variables
     int studentId;
     String name;
     int mark1, mark2, mark3;
     int total;
     double percentage;
 
-    // Method to input student details
-    void inputDetails() {
-        Scanner sc = new Scanner(System.in);
+    void inputDetails(Scanner sc) {
         System.out.print("Enter Student ID: ");
         studentId = sc.nextInt();
         sc.nextLine(); // Consume newline
@@ -37,13 +34,11 @@ class Student {
         mark3 = sc.nextInt();
     }
 
-    // Method to calculate total and percentage
     void calculateResults() {
         total = mark1 + mark2 + mark3;
         percentage = total / 3.0;
     }
 
-    // Method to display student details
     void displayDetails() {
         System.out.println("\n--- Student Details ---");
         System.out.println("Student ID: " + studentId);
@@ -52,29 +47,63 @@ class Student {
         System.out.println("Total Marks: " + total);
         System.out.println("Percentage: " + percentage + "%");
     }
+}
 
-    // Main method to demonstrate
+public class Main {
     public static void main(String[] args) {
-        Student s = new Student();
-        s.inputDetails();
-        s.calculateResults();
-        s.displayDetails();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("How many students do you want to enter? ");
+        int n = sc.nextInt();
+
+        Student[] students = new Student[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEntering details for Student " + (i + 1));
+            students[i] = new Student();
+            students[i].inputDetails(sc);
+            students[i].calculateResults();
+        }
+
+        for (int i = 0; i < n; i++) {
+            students[i].displayDetails();
+        }
+
+        sc.close();
     }
 }
+
 
 
 output:
 _______
 
-Enter Student ID: 101
-Enter Student Name: Alice
-Enter marks for Subject 1: 85
+How many students do you want to enter? 2
+
+Entering details for Student 1
+Enter Student ID: 2222
+Enter Student Name: kp
+Enter marks for Subject 1: 20
 Enter marks for Subject 2: 90
-Enter marks for Subject 3: 80
+Enter marks for Subject 3: 45
+
+Entering details for Student 2
+Enter Student ID: 333
+Enter Student Name: faz
+Enter marks for Subject 1: 4
+Enter marks for Subject 2: 5
+Enter marks for Subject 3: 6
 
 --- Student Details ---
-Student ID: 101
-Name: Alice
-Marks: 85, 90, 80
-Total Marks: 255
-Percentage: 85.0%
+Student ID: 2222
+Name: kp
+Marks: 20, 90, 45
+Total Marks: 155
+Percentage: 51.666666666666664%
+
+--- Student Details ---
+Student ID: 333
+Name: faz
+Marks: 4, 5, 6
+Total Marks: 15
+Percentage: 5.0%

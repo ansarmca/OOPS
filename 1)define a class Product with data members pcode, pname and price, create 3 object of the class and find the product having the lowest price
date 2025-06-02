@@ -1,52 +1,13 @@
-Product.java: 
-------------
-package Module1;
-
-public class Product {
-
-	String pname,pcode;
-	int price;
-	public Product() {}
-	public Product(String pname, String pcode, int price) {
-		this.pname=pname;
-		this.pcode=pcode;
-		this.price=price;
-	}
-	public void setPname(String pname) {
-		this.pname=pname;
-	}
-	public String getPcode() {
-		return pcode;
-	}
-	public String getPname() {
-		return pname;
-	}
-	public void setpcode(String pcode) {
-		this.pcode=pcode;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price=price;
-	}
-	public void display() {
-		System.out.println("pcode: "+ this.pcode);
-		System.out.println("pname: "+ this.pname);
-		System.out.println("price: "+ this.price);
-	}
-}
-
-cars.java: 
-----------
 package module_1;
 
 import java.util.Scanner;
 
 class Product {
-    String pname;
-    String pcode;
-    int price;
+    private String pname;
+    private String pcode;
+    private int price;
+
+    public Product() {}
 
     public Product(String pname, String pcode, int price) {
         this.pname = pname;
@@ -54,41 +15,65 @@ class Product {
         this.price = price;
     }
 
-    public Product() {}
-    public void display() {
-        System.out.println("Product Code: " + pcode);
-        System.out.println("Product Name: " + pname);
-        System.out.println("Product Price: " + price);
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPcode(String pcode) {
+        this.pcode = pcode;
+    }
+
+    public String getPcode() {
+        return pcode;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public int getPrice() {
         return price;
     }
+
+    public void display() {
+        System.out.println("Product Code : " + pcode);
+        System.out.println("Product Name : " + pname);
+        System.out.println("Product Price: " + price);
+    }
 }
 
-public class cars {
-
+public class Cars {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("How many products would you like to enter? ");
         int numProducts = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
+
         Product[] products = new Product[numProducts];
+
         for (int i = 0; i < numProducts; i++) {
             System.out.println("\nEnter details for Product " + (i + 1) + ":");
             System.out.print("Enter Product Code: ");
             String pcode = scanner.nextLine();
+
             System.out.print("Enter Product Name: ");
             String pname = scanner.nextLine();
+
             System.out.print("Enter Product Price: ");
             int price = scanner.nextInt();
             scanner.nextLine();
+
             products[i] = new Product(pname, pcode, price);
         }
 
+        System.out.println("\n--- All Products ---");
         for (int i = 0; i < numProducts; i++) {
-            System.out.println("\nDisplaying Product " + (i + 1) + ":");
+            System.out.println("\nProduct " + (i + 1) + ":");
             products[i].display();
         }
 
@@ -98,53 +83,10 @@ public class cars {
                 cheapestProduct = products[i];
             }
         }
-        System.out.println("\nDisplaying the product with the lowest price:");
+
+        System.out.println("\n--- Product with the Lowest Price ---");
         cheapestProduct.display();
 
         scanner.close();
     }
 }
-
-
-
-
-output:
--------
-Enter details for Product 1:
-Enter Product Code: car123
-Enter Product Name: Benz
-Enter Product Price: 1000
-
-Enter details for Product 2:
-Enter Product Code: car800
-Enter Product Name: Maruthi
-Enter Product Price: 25000
-
-Enter details for Product 3:
-Enter Product Code: car454
-Enter Product Name: Jaguar
-Enter Product Price: 50000
-
-Displaying Product 1:
-pcode: car123
-pname: Benz
-price: 1000
-
-Displaying Product 2:
-pcode: car800
-pname: Maruthi
-price: 25000
-
-Displaying Product 3:
-pcode: car454
-pname: Jaguar
-price: 50000
-
-Displaying product with the lowest price:
-pcode: car123
-pname: Benz
-price: 1000
-
-
-
-

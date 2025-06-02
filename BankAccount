@@ -1,0 +1,94 @@
+Write a Java program to implement a class BankAccount with the following:
+
+Instance variables: account number, account holder name, and balance.
+
+Methods to deposit an amount, withdraw an amount (check for minimum balance), and display account details.
+
+Create an object of the class and perform deposit and withdrawal operations.
+
+code:
+_____
+
+
+import java.util.Scanner;
+
+class BankAccount {
+    // Instance variables
+    int accNumber;
+    String accHolderName;
+    double balance;
+
+    // Constructor
+    BankAccount(int accNumber, String accHolderName, double balance) {
+        this.accNumber = accNumber;
+        this.accHolderName = accHolderName;
+        this.balance = balance;
+    }
+
+    // Method to deposit amount
+    void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount);
+    }
+
+    // Method to withdraw amount with minimum balance check
+    void withdraw(double amount) {
+        if (balance - amount >= 500) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Withdrawal failed! Minimum balance of 500 must be maintained.");
+        }
+    }
+
+    // Method to display account details
+    void display() {
+        System.out.println("\n--- Account Details ---");
+        System.out.println("Account Number: " + accNumber);
+        System.out.println("Account Holder: " + accHolderName);
+        System.out.println("Balance: " + balance);
+    }
+
+    // Main method to test
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input account details
+        System.out.print("Enter account number: ");
+        int accNo = sc.nextInt();
+        sc.nextLine(); // Consume newline
+        System.out.print("Enter account holder name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter initial balance: ");
+        double bal = sc.nextDouble();
+
+        // Create object
+        BankAccount acc = new BankAccount(accNo, name, bal);
+
+        // Deposit and withdraw
+        acc.deposit(1000);
+        acc.withdraw(700);
+        acc.withdraw(1000); // This may fail if balance < minimum
+
+        // Display final account details
+        acc.display();
+
+        sc.close();
+    }
+}
+
+output:
+______
+
+Enter account number: 101
+Enter account holder name: John Doe
+Enter initial balance: 2000
+
+Deposited: 1000.0
+Withdrawn: 700.0
+Withdrawal failed! Minimum balance of 500 must be maintained.
+
+--- Account Details ---
+Account Number: 101
+Account Holder: John Doe
+Balance: 2300.0

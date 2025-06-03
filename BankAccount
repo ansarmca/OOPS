@@ -9,11 +9,9 @@ Create an object of the class and perform deposit and withdrawal operations.
 code:
 _____
 
-
 import java.util.Scanner;
 
 class BankAccount {
-    // Instance variables
     int accNumber;
     String accHolderName;
     double balance;
@@ -25,13 +23,13 @@ class BankAccount {
         this.balance = balance;
     }
 
-    // Method to deposit amount
+    // Deposit method
     void deposit(double amount) {
         balance += amount;
         System.out.println("Deposited: " + amount);
     }
 
-    // Method to withdraw amount with minimum balance check
+    // Withdraw method
     void withdraw(double amount) {
         if (balance - amount >= 500) {
             balance -= amount;
@@ -41,37 +39,58 @@ class BankAccount {
         }
     }
 
-    // Method to display account details
+    // Display method
     void display() {
         System.out.println("\n--- Account Details ---");
         System.out.println("Account Number: " + accNumber);
         System.out.println("Account Holder: " + accHolderName);
         System.out.println("Balance: " + balance);
     }
+}
 
-    // Main method to test
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Input account details
-        System.out.print("Enter account number: ");
-        int accNo = sc.nextInt();
+        // Ask how many accounts to create
+        System.out.print("How many accounts do you want to enter? ");
+        int numAccounts = sc.nextInt();
         sc.nextLine(); // Consume newline
-        System.out.print("Enter account holder name: ");
-        String name = sc.nextLine();
-        System.out.print("Enter initial balance: ");
-        double bal = sc.nextDouble();
 
-        // Create object
-        BankAccount acc = new BankAccount(accNo, name, bal);
+        BankAccount[] accounts = new BankAccount[numAccounts];
 
-        // Deposit and withdraw
-        acc.deposit(1000);
-        acc.withdraw(700);
-        acc.withdraw(1000); // This may fail if balance < minimum
+        // Input details for each account
+        for (int i = 0; i < numAccounts; i++) {
+            System.out.println("\nEnter details for Account " + (i + 1));
 
-        // Display final account details
-        acc.display();
+            System.out.print("Account Number: ");
+            int accNo = sc.nextInt();
+            sc.nextLine(); // Consume newline
+
+            System.out.print("Account Holder Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Initial Balance: ");
+            double bal = sc.nextDouble();
+
+            accounts[i] = new BankAccount(accNo, name, bal);
+
+            // Deposit
+            System.out.print("Enter amount to deposit: ");
+            double dep = sc.nextDouble();
+            accounts[i].deposit(dep);
+
+            // Withdraw
+            System.out.print("Enter amount to withdraw: ");
+            double with = sc.nextDouble();
+            accounts[i].withdraw(with);
+        }
+
+        // Display all account details
+        System.out.println("\n--- All Account Details ---");
+        for (BankAccount acc : accounts) {
+            acc.display();
+        }
 
         sc.close();
     }
@@ -79,16 +98,32 @@ class BankAccount {
 
 output:
 ______
+How many accounts do you want to enter? 2
 
-Enter account number: 101
-Enter account holder name: John Doe
-Enter initial balance: 2000
+Enter details for Account 1
+Account Number: 101
+Account Holder Name: Alice
+Initial Balance: 1500
+Enter amount to deposit: 500
+Deposited: 500
+Enter amount to withdraw: 1000
+Withdrawn: 1000
 
-Deposited: 1000.0
-Withdrawn: 700.0
+Enter details for Account 2
+Account Number: 102
+Account Holder Name: Bob
+Initial Balance: 800
+Enter amount to deposit: 200
+Deposited: 200
+Enter amount to withdraw: 600
 Withdrawal failed! Minimum balance of 500 must be maintained.
 
---- Account Details ---
+--- All Account Details ---
 Account Number: 101
-Account Holder: John Doe
-Balance: 2300.0
+Account Holder: Alice
+Balance: 1000.0
+
+Account Number: 102
+Account Holder: Bob
+Balance: 1000.0
+
